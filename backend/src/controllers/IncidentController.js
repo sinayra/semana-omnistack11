@@ -17,7 +17,11 @@ module.exports = {
   },
 
   async index(request, response) {
-    const ongs = await conn("incidents").select("*");
+    const { page = 1 } = request.query;
+    const ongs = await conn("incidents")
+      .limit(5)
+      .offset((page - 1) * 5)
+      .select("*");
 
     return response.json({ ongs });
   },
