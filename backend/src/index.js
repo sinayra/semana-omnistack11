@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const routes = require("./routes");
 
 app.use(express.json());
 
@@ -20,10 +21,5 @@ app.use(express.json());
   * Request body: Corpo da requisição, utilizado para criar ou alterar recursos
   */
 
-app.get('/', (request, response) => {
-    return response.json({
-        evento: 'Semana Omnistack'
-    });
-});
-
+app.use(routes);
 app.listen(3333);
