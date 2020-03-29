@@ -5,9 +5,19 @@ const IncidentController = require("./controllers/IncidentController");
 const ProfileController = require("./controllers/ProfileController");
 const SessionController = require("./controllers/SessionController");
 
+const { celebrate, Segments, Joi } = require("celebrate");
+
 routes.post("/sessions", SessionController.store);
 
-routes.post("/ongs", OngController.store);
+routes.post("/ongs", celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        name: Joi.string().required(),
+        email: Joi.string().required().email(),
+        whatsapp: Joi.number().required().min(10).max(11),
+        city: Joi.string().required(),
+        uf: Joi.string().required().length(2)
+    })
+}), OngController.store);
 routes.get("/ongs", OngController.index);
 
 routes.post("/incidents", IncidentController.store);
