@@ -9,7 +9,7 @@ import style from "./style";
 export default function Incidents() {
   const navigation = useNavigation();
 
-  function navigateToDetail(){
+  function navigateToDetail() {
     navigation.navigate("Detail");
   }
 
@@ -42,14 +42,16 @@ export default function Incidents() {
             <Text style={style.incidentProperty}>VALOR: </Text>
             <Text style={style.incidentValue}>R$120,00</Text>
 
-            <TouchableOpacity style={style.detailsButton} onPress={navigateToDetail}>
+            <TouchableOpacity
+              style={style.detailsButton}
+              onPress={navigateToDetail}
+            >
               <Text style={style.detailsButtonText}>Ver mais detalhes</Text>
               <Feather name="arrow-right" size={16} color="#E02041" />
             </TouchableOpacity>
           </View>
         )}
       />
-     
     </View>
   );
 }
